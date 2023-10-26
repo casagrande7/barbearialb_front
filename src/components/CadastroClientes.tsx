@@ -23,7 +23,7 @@ const CadastroClientes = () => {
     const [complemento, setComplemento] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
     // FormEvent monitora os eventos do formulário
-    const cadastrarClientes = (e: FormEvent) => {
+    const CadastrarClientes = (e: FormEvent) => {
         e.preventDefault();
 
         const dados = {
@@ -117,11 +117,10 @@ const CadastroClientes = () => {
             <Header />
             <main className={styles.main}>
                 <div className='container'>
-                    <div className='row'>
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>Cadastrar Clientes</h5>
-                            <form onSubmit={cadastrarClientes} className='row g-3'>
+                            <form onSubmit={CadastrarClientes} className='row g-3'>
                                 <div className='col-4'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
                                     <input type="text" name='nome' className='form-conrtrol' required onChange={handleState} />
@@ -196,7 +195,6 @@ const CadastroClientes = () => {
                                 </div>
                             </form>
                         </div>
-                    </div>
                     </div>
                 </div>
             </main>
