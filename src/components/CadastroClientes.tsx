@@ -117,15 +117,16 @@ const CadastroClientes = () => {
             <Header />
             <main className={styles.main}>
                 <div className='container'>
+                    <div className='row'>
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>Cadastrar Clientes</h5>
                             <form onSubmit={cadastrarClientes} className='row g-3'>
-                                <div className='col-6'>
+                                <div className='col-4'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
                                     <input type="text" name='nome' className='form-conrtrol' required onChange={handleState} />
                                 </div>
-                                <div className='col-6'>
+                                <div className='col-4'>
                                     <label htmlFor='celular' className='form-label'>Celular</label>
                                     <input type="text" name='celular' className='form-conrtrol' required onChange={handleState} />
 
@@ -195,6 +196,7 @@ const CadastroClientes = () => {
                                 </div>
                             </form>
                         </div>
+                    </div>
                     </div>
                 </div>
             </main>
