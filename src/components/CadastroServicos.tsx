@@ -33,7 +33,7 @@ const CadastroServicos = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.sucess = false) {
+                if (response.data.sucess === false) {
                     console.log("error");
                     console.log(response.data.error);
                 } else {

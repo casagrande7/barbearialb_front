@@ -22,6 +22,7 @@ const CadastroProfissionais = () => {
     const [cep, setCep] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
     const [salario, setSalario] = useState<string>("");
+    const [pesquisa, setPesquisa] = useState<string>("");
     // FormEvent monitora os eventos do formulário
     const CadastrarProfissionals = (e: FormEvent) => {
         e.preventDefault();
@@ -40,7 +41,8 @@ const CadastroProfissionais = () => {
             bairro: bairro,
             cep: cep,
             senha: senha,
-            salario: salario
+            salario: salario,
+            pesquisa: pesquisa
 
         }
 
@@ -53,7 +55,7 @@ const CadastroProfissionais = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.sucess = false) {
+                if (response.data.sucess === false) {
                     console.log("error");
                     console.log(response.data.error);
                 } else {
@@ -108,6 +110,9 @@ const CadastroProfissionais = () => {
         if (e.target.name === "salario") {
             setSalario(e.target.value);
         }
+        if (e.target.name === "pesquisa") {
+            setPesquisa(e.target.value);
+        }
     }
 
     const findCep = (e: FormEvent) => {
@@ -121,9 +126,9 @@ const CadastroProfissionais = () => {
             .then(
                 data => {
                     setCidade(data.localidade);
-                    setCep(data.cep);
+                    setPesquisa(data.cep);
                     setEstado(data.uf);
-                    setPais(data.pais);
+                    
 
                 }).catch(error => { console.log("Ocorreu um erro") });
     }

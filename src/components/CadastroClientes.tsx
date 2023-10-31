@@ -22,6 +22,7 @@ const CadastroClientes = () => {
     const [cep, setCep] = useState<string>("");
     const [complemento, setComplemento] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
+    const [pesquisa, setPesquisa] = useState<string>("");
     // FormEvent monitora os eventos do formulário
     const CadastrarClientes = (e: FormEvent) => {
         e.preventDefault();
@@ -40,7 +41,8 @@ const CadastroClientes = () => {
             bairro: bairro,
             cep: cep,
             complemento: complemento,
-            senha: senha
+            senha: senha,
+            pesquisa: pesquisa
 
         }
 
@@ -53,11 +55,11 @@ const CadastroClientes = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.sucess = false) {
+                if (response.data.sucess === false) {
                     console.log("error");
                     console.log(response.data.error);
                 } else {
-                    window.location.href = "/ListagemClientes"
+                      window.location.href = "/ListagemClientes"
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -108,7 +110,7 @@ const CadastroClientes = () => {
         if (e.target.name === "senha") {
             setSenha(e.target.value);
         }
-
+       
 
     }
 
@@ -123,11 +125,12 @@ const CadastroClientes = () => {
             .then(
                 data => {
                     setCidade(data.localidade);
-                    setCep(data.cep);
+                    setPesquisa(data.cep);
                     setEstado(data.uf);
-                    setPais(data.pais);
-                    
-                }).catch(error => { console.log("Ocorreu um erro") });
+
+                }).catch(error => {
+
+                });
     }
 
     return (
@@ -170,7 +173,7 @@ const CadastroClientes = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='estado' className='form-label'>Estado</label>
-                                    <input type="text" name='estado'  value={estado} className='form-control' required onChange={handleState} />
+                                    <input type="text" name='estado' value={estado} className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-4'>

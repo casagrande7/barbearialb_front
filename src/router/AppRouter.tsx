@@ -6,7 +6,6 @@ import CadastroServicos from "../components/CadastroServicos";
 import ListagemServicos from "../components/ListagemServicos";
 import CadastroProfissionais from "../components/CadastroProfissionais";
 import ListagemProfissionais from "../components/ListagemProfissionais";
-import BuscaCep from "../components/BuscaCepFormCliente";
 
 const AppRouter = () => {
     return(
@@ -18,7 +17,6 @@ const AppRouter = () => {
             <Route path="/ListagemServicos" element= {<ListagemServicos />} />
             <Route path="/CadastroProfissionais" element= {<CadastroProfissionais />} />
             <Route path="/ListagemProfissionais" element= {<ListagemProfissionais />} />
-            <Route path="/BuscaCep" element= {<BuscaCep />} />
            </Routes>
         </BrowserRouter>
 
