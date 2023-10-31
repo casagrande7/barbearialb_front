@@ -71,21 +71,21 @@ const CadastroServicos = () => {
                             <form onSubmit={CadastrarServicos} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='preco' className='form-label'>Preço</label>
-                                    <input type="text" name='preco' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='preco' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='descricao' className='form-label'>Descrição</label>
-                                    <input type="text" name='descricao' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='descricao' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='duracao' className='form-label'>Duração</label>
-                                    <input type="text" name='duracao' className='form-conrtrol' required onChange={handleState} />
+                                    <input type="text" name='duracao' className='form-control' required onChange={handleState} />
 
                                 </div>
 
