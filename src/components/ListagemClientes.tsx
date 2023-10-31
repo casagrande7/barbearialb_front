@@ -93,7 +93,6 @@ const Listagem = () => {
                                         <th>Número</th>
                                         <th>Bairro</th>
                                         <th>CEP</th>
-                                        <th>Senha</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -113,7 +112,6 @@ const Listagem = () => {
                                             <td>{usuario.numero}</td>
                                             <td>{usuario.bairro}</td>
                                             <td>{usuario.cep}</td>
-                                            <td>{usuario.senha}</td>
                                             <td>
                                                 <a href="#" className='btn btn-primary btn-sm'>Editar</a>
                                                 <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
