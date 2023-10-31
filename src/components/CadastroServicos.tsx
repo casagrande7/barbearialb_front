@@ -3,6 +3,8 @@ import Footer from './FooterServicos';
 import Header from './HeaderServicos';
 import styles from '../App.module.css'
 import axios from 'axios';
+import FooterServicos from './FooterServicos';
+import HeaderServicos from './HeaderServicos';
 
 
 const CadastroServicos = () => {
@@ -62,7 +64,7 @@ const CadastroServicos = () => {
 
     return (
         <div>
-            <Header />
+            <HeaderServicos />
             <main className={styles.main}>
                 <div className='container'>
                     <div className='card'>
@@ -98,7 +100,7 @@ const CadastroServicos = () => {
                 </div>
             </main>
 
-            <Footer />
+            <FooterServicos />
         </div>
     );
 }
