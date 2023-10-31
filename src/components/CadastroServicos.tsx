@@ -1,6 +1,6 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import Footer from './Footer';
-import Header from './Header';
+import Footer from './FooterServicos';
+import Header from './HeaderServicos';
 import styles from '../App.module.css'
 import axios from 'axios';
 
@@ -78,12 +78,12 @@ const CadastroServicos = () => {
                                     <input type="text" name='preco' className='form-conrtrol' required onChange={handleState} />
 
                                 </div>
-                                <div className='col-4'>
+                                <div className='col-6'>
                                     <label htmlFor='descricao' className='form-label'>Descrição</label>
                                     <input type="text" name='descricao' className='form-conrtrol' required onChange={handleState} />
 
                                 </div>
-                                <div className='col-4'>
+                                <div className='col-6'>
                                     <label htmlFor='duracao' className='form-label'>Duração</label>
                                     <input type="text" name='duracao' className='form-conrtrol' required onChange={handleState} />
 
