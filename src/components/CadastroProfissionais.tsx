@@ -108,8 +108,6 @@ const CadastroProfissionais = () => {
         if (e.target.name === "salario") {
             setSalario(e.target.value);
         }
-
-
     }
 
     const findCep = (e: FormEvent) => {
@@ -150,7 +148,7 @@ const CadastroProfissionais = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='email' className='form-label'>E-mail</label>
-                                    <input type="email" name='email' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='email' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-4'>
