@@ -1,8 +1,8 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import Footer from './Footer';
-import Header from './Header';
 import styles from '../App.module.css'
 import axios from 'axios';
+import FooterProfissionais from './FooterProfissionais';
+import HeaderProfissionais from './HeaderProfissionais';
 
 
 const CadastroProfissionais = () => {
@@ -23,7 +23,7 @@ const CadastroProfissionais = () => {
     const [senha, setSenha] = useState<string>("");
     const [salario, setSalario] = useState<string>("");
     // FormEvent monitora os eventos do formulário
-    const CadastrarProfissionais = (e: FormEvent) => {
+    const CadastrarProfissionals = (e: FormEvent) => {
         e.preventDefault();
 
         const dados = {
@@ -44,7 +44,7 @@ const CadastroProfissionais = () => {
 
         }
 
-        axios.post('http://127.0.0.1:8000/api/registro',
+        axios.post('http://127.0.0.1:8000/api/cadastro',
             dados,
             {
                 headers: {
@@ -106,7 +106,7 @@ const CadastroProfissionais = () => {
             setSenha(e.target.value);
         }
         if (e.target.name === "salario") {
-            setSenha(e.target.value);
+            setSalario(e.target.value);
         }
 
 
@@ -126,19 +126,19 @@ const CadastroProfissionais = () => {
                     setCep(data.cep);
                     setEstado(data.uf);
                     setPais(data.pais);
-                    
+
                 }).catch(error => { console.log("Ocorreu um erro") });
     }
 
     return (
         <div>
-            <Header />
+            <HeaderProfissionais />
             <main className={styles.main}>
                 <div className='container'>
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>Cadastrar Profissionais</h5>
-                            <form onSubmit={CadastrarProfissionais} className='row g-3'>
+                            <form onSubmit={CadastrarProfissionals} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
                                     <input type="text" name='nome' className='form-control' required onChange={handleState} />
@@ -170,7 +170,7 @@ const CadastroProfissionais = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='estado' className='form-label'>Estado</label>
-                                    <input type="text" name='estado'  value={estado} className='form-control' required onChange={handleState} />
+                                    <input type="text" name='estado' value={estado} className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-4'>
@@ -205,7 +205,7 @@ const CadastroProfissionais = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='salario' className='form-label'>Salário</label>
-                                    <input type="password" name='salario' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='salario' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-12'>
@@ -217,7 +217,7 @@ const CadastroProfissionais = () => {
                 </div>
             </main>
 
-            <Footer />
+            <FooterProfissionais />
         </div>
     );
 }

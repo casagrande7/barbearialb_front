@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css"
 
-const HeaderServicos = () => {
+const HeaderProfissionais = () => {
     return (
         <header className={styles.header}>
             <h1>Barbearia LB</h1>
@@ -9,4 +9,4 @@ const HeaderServicos = () => {
     );
 }
 
-export default HeaderServicos;
+export default HeaderProfissionais;
