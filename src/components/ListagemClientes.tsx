@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from "../App.module.css";
 import { CadastroClientes } from '../interfaces/CadastroClientes';
 
@@ -113,7 +114,7 @@ const Listagem = () => {
                                             <td>{usuario.bairro}</td>
                                             <td>{usuario.cep}</td>
                                             <td>
-                                                <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                                <Link to={"/EditarClientes/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>

@@ -6,6 +6,9 @@ import CadastroServicos from "../components/CadastroServicos";
 import ListagemServicos from "../components/ListagemServicos";
 import CadastroProfissionais from "../components/CadastroProfissionais";
 import ListagemProfissionais from "../components/ListagemProfissionais";
+import Editar from "../components/EditarClientes";
+import EditarServicos from "../components/EditarServicos";
+import EditarClientes from "../components/EditarClientes";
 
 const AppRouter = () => {
     return(
@@ -13,10 +16,13 @@ const AppRouter = () => {
           <Routes>
             <Route path="/CadastroClientes" element= {<CadastroClientes />} />
             <Route path="/ListagemClientes" element= {<ListagemClientes />} />
+            <Route path="EditarClientes/:id" element= {<EditarClientes />} />
             <Route path="/CadastroServicos" element= {<CadastroServicos />} />
             <Route path="/ListagemServicos" element= {<ListagemServicos />} />
+            <Route path="EditarServicos/:id" element= {<EditarServicos />} />
             <Route path="/CadastroProfissionais" element= {<CadastroProfissionais />} />
             <Route path="/ListagemProfissionais" element= {<ListagemProfissionais />} />
+            <Route path="EditarProfissionais/:id" element= {<Editar />} />
            </Routes>
         </BrowserRouter>
 
