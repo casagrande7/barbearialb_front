@@ -60,7 +60,6 @@ const EditarProfissionais = () => {
             window.location.href = "/ListagemProfissionais"
         }).catch(function (error) {
             console.log("Ocorreu um erro ao atualizar");
-            return error;
         });
 
     }
