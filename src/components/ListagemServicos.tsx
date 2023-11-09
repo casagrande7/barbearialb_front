@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from "../App.module.css";
 import { CadastroServicos } from '../interfaces/CadastroServicos';
 
@@ -8,6 +8,17 @@ const ListagemServicos = () => {
     const [usuarios, setUsuarios] = useState<CadastroServicos[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+
+    const handleDelete = (id: number) =>  {
+        const confirm = window.confirm("Você gostaria de exclui?");
+        if (confirm) {
+            axios.delete('http://127.0.0.1:8000/api/delete/' + id)
+            .then(response =>{
+                window.location.href = "/ListagemServicos"
+            }). catch(error => console.log(error));
+        }
+    }
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === "pesquisa") {
@@ -99,7 +110,7 @@ const ListagemServicos = () => {
                                             <td>{usuario.duracao}</td>
                                             <td>
                                                 <Link to={"/EditarServicos/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
-                                                <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                                <a href="#" onClick={() => handleDelete(usuario.id)}className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>
                                     ))}
