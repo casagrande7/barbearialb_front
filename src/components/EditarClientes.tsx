@@ -4,6 +4,7 @@ import Header from "./Header";
 import FooterAtualizacaoClientes from "./FooterAtualizaçãoClientes";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const EditarClientes = () => {
 
@@ -55,7 +56,28 @@ const EditarClientes = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
-            window.location.href = "/Listagem/Clientes"
+            if (response.data.status === true) {
+                Swal.fire({
+                    title: "Cadastro Atualizado",
+                    text: "Cliente atualizado com sucesso",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                window.setTimeout(() => {
+                    window.location.href = "/Listagem/Clientes";
+                }, 1000);
+            } else {
+                console.log("error");
+                console.log(response.data.error);
+                Swal.fire({
+                    title: "Opsss...",
+                    text: "Erro ao atualizar o cliente!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         }).catch(function (error) {
             console.log("Ocorreu um erro ao atualizar");
         });
@@ -189,12 +211,12 @@ const EditarClientes = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='cidade' className='form-label'>Cidade</label>
-                                    <input type="text"  name='cidade' className='form-control' required onChange={handleState} value={cidade} />
+                                    <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade} />
 
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='estado' className='form-label'>Estado</label>
-                                    <input type="text" name='estado'  className='form-control' required onChange={handleState} value={estado} />
+                                    <input type="text" name='estado' className='form-control' required onChange={handleState} value={estado} />
 
                                 </div>
                                 <div className='col-4'>

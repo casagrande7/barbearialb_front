@@ -4,6 +4,7 @@ import Header from "./Header";
 import FooterAtualizacaoServicos from "./FooterAtualizaçãoServicos";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const EditarServicos = () => {
 
@@ -34,7 +35,28 @@ const EditarServicos = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
-            window.location.href = "/Listagem/Servicos"
+            if(response.data.status === true){
+                Swal.fire({
+                    title: "Cadastro Atualizado",
+                    text: "Serviços atualizado com sucesso",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                window.setTimeout(() => {
+                    window.location.href = "/Listagem/Servicos";
+                }, 1000);
+            } else{
+                console.log("error");
+                console.log(response.data.error);
+                Swal.fire({
+                    title: "Opsss...",
+                    text: "Erro ao atualizar o profissional!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         }).catch(function (error) {
             console.log("Ocorreu um erro ao atualizar");
         });

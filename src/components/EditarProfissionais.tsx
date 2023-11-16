@@ -4,6 +4,7 @@ import Header from "./Header";
 import FooterAtualizacaoProfissionais from "./FooterAtualizacaoProfissionais";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const EditarProfissionais = () => {
 
@@ -57,7 +58,29 @@ const EditarProfissionais = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
-            window.location.href = "/Listagem/Profissionais"
+            if(response.data.status === true){
+                Swal.fire({
+                    title: "Cadastro Atualizado",
+                    text: "Profissional atualizado com sucesso",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                window.setTimeout(() => {
+                    window.location.href = "/Listagem/Profissionais";
+                }, 1000);
+            } else{
+                console.log("error");
+                console.log(response.data.error);
+                Swal.fire({
+                    title: "Opsss...",
+                    text: "Erro ao atualizar o profissional!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            
         }).catch(function (error) {
             console.log("Ocorreu um erro ao atualizar");
         });

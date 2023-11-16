@@ -3,6 +3,7 @@ import styles from '../App.module.css'
 import axios from 'axios';
 import FooterServicos from './FooterServicos';
 import HeaderServicos from './HeaderServicos';
+import Swal from 'sweetalert2';
 
 
 const CadastroServicos = () => {
@@ -33,11 +34,27 @@ const CadastroServicos = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.sucess === false) {
+                if (response.data.status === true) {
+                    Swal.fire({
+                        title: "Cadastro Concluído",
+                        text: "Serviço cadastrado com sucesso",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    window.setTimeout(() => {
+                        window.location.href = "/Listagem/Servicos";
+                    }, 1000);
+                } else {
                     console.log("error");
                     console.log(response.data.error);
-                } else {
-                    window.location.href = "/ListagemServicos"
+                    Swal.fire({
+                        title: "Opsss...",
+                        text: "Erro ao cadastrar o serviço!",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
                 }
             }).catch(function (error) {
                 console.log(error);

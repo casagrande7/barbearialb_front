@@ -3,6 +3,7 @@ import styles from '../App.module.css'
 import axios from 'axios';
 import FooterProfissionais from './FooterProfissionais';
 import HeaderProfissionais from './HeaderProfissionais';
+import Swal from 'sweetalert2';
 
 
 const CadastroProfissionais = () => {
@@ -55,12 +56,27 @@ const CadastroProfissionais = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.success === false) {
+                if (response.data.status === true) {
+                    Swal.fire({
+                        title: "Cadastro Concluído",
+                        text: "Profissional cadastrado com sucesso",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    window.setTimeout(() => {
+                        window.location.href = "/Listagem/Profissionais";
+                    }, 1000);
+                } else {
                     console.log("error");
                     console.log(response.data.error);
-                } else {
-                    
-                    window.location.href = "/ListagemProfissionais"
+                    Swal.fire({
+                        title: "Opsss...",
+                        text: "Erro ao cadastrar o profissional!",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
                 }
             }).catch(function (error) {
                 console.log(error);
