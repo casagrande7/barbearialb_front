@@ -55,7 +55,7 @@ const EditarClientes = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
-            window.location.href = "/ListagemClientes"
+            window.location.href = "/Listagem/Clientes"
         }).catch(function (error) {
             console.log("Ocorreu um erro ao atualizar");
         });

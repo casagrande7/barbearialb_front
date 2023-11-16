@@ -6,7 +6,6 @@ import CadastroServicos from "../components/CadastroServicos";
 import ListagemServicos from "../components/ListagemServicos";
 import CadastroProfissionais from "../components/CadastroProfissionais";
 import ListagemProfissionais from "../components/ListagemProfissionais";
-import Editar from "../components/EditarClientes";
 import EditarServicos from "../components/EditarServicos";
 import EditarClientes from "../components/EditarClientes";
 import EditarProfissionais from "../components/EditarProfissionais";
@@ -15,15 +14,15 @@ const AppRouter = () => {
     return(
         <BrowserRouter>
           <Routes>
-            <Route path="/CadastroClientes" element= {<CadastroClientes />} />
-            <Route path="/ListagemClientes" element= {<ListagemClientes />} />
-            <Route path="EditarClientes/:id" element= {<EditarClientes />} />
-            <Route path="/CadastroServicos" element= {<CadastroServicos />} />
-            <Route path="/ListagemServicos" element= {<ListagemServicos />} />
-            <Route path="EditarServicos/:id" element= {<EditarServicos />} />
-            <Route path="/CadastroProfissionais" element= {<CadastroProfissionais />} />
-            <Route path="/ListagemProfissionais" element= {<ListagemProfissionais />} />
-            <Route path="EditarProfissionais/:id" element= {<EditarProfissionais />} />
+            <Route path="/Cadastro/Clientes" element= {<CadastroClientes />} />
+            <Route path="/Listagem/Clientes" element= {<ListagemClientes />} />
+            <Route path="/Editar/Clientes/:id" element= {<EditarClientes />} />
+            <Route path="/Cadastro/Servicos" element= {<CadastroServicos />} />
+            <Route path="/Listagem/Servicos" element= {<ListagemServicos />} />
+            <Route path="/Editar/Servicos/:id" element= {<EditarServicos />} />
+            <Route path="/Cadastro/Profissionais" element= {<CadastroProfissionais />} />
+            <Route path="/Listagem/Profissionais" element= {<ListagemProfissionais />} />
+            <Route path="/Editar/Profissionais/:id" element= {<EditarProfissionais />} />
            </Routes>
         </BrowserRouter>
 

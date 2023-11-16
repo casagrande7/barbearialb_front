@@ -15,7 +15,7 @@ const ListagemProfissionais = () => {
         if (confirm) {
             axios.delete('http://127.0.0.1:8000/api/deletar/' + id)
             .then(response =>{
-                window.location.href = "/ListagemProfissionais"
+                window.location.href = "/Listagem/Profissionais"
             }). catch(error => console.log(error));
         }
     }
@@ -127,7 +127,7 @@ const ListagemProfissionais = () => {
                                             <td>{usuario.cep}</td>
                                             <td>{usuario.salario}</td>
                                             <td>
-                                                <Link to={"/EditarProfissionais/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                                <Link to={"/Editar/Profissionais/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" onClick={() => handleDelete(usuario.id)}className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>

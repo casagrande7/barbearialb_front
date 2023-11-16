@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Header from './Header';
 import styles from '../App.module.css'
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const CadastroClientes = () => {
@@ -55,11 +56,27 @@ const CadastroClientes = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.sucess === false) {
+                if (response.data.status === true) {
+                    Swal.fire({
+                        title: "Cadastro Concluído",
+                        text: "Cliente cadastrado com sucesso",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    window.setTimeout(() => {
+                        window.location.href = "/Listagem/Clientes";
+                    }, 1000);
+                } else {
                     console.log("error");
                     console.log(response.data.error);
-                } else {
-                      window.location.href = "/ListagemClientes"
+                    Swal.fire({
+                        title: "Opsss...",
+                        text: "Erro ao cadastrar o cliente!",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -110,7 +127,7 @@ const CadastroClientes = () => {
         if (e.target.name === "senha") {
             setSenha(e.target.value);
         }
-       
+
 
     }
 
@@ -167,6 +184,11 @@ const CadastroClientes = () => {
 
                                 </div>
                                 <div className='col-4'>
+                                    <label htmlFor='cep' className='form-label'>CEP</label>
+                                    <input type="text" name='cep' className='form-control' required onBlur={findCep} onChange={handleState} />
+
+                                </div>
+                                <div className='col-4'>
                                     <label htmlFor='cidade' className='form-label'>Cidade</label>
                                     <input type="text" value={cidade} name='cidade' className='form-control' required onChange={handleState} />
 
@@ -194,11 +216,6 @@ const CadastroClientes = () => {
                                 <div className='col-4'>
                                     <label htmlFor='bairro' className='form-label'>Bairro</label>
                                     <input type="text" name='bairro' className='form-control' required onChange={handleState} />
-
-                                </div>
-                                <div className='col-4'>
-                                    <label htmlFor='cep' className='form-label'>CEP</label>
-                                    <input type="text" name='cep' className='form-control' required onBlur={findCep} onChange={handleState} />
 
                                 </div>
                                 <div className='col-4'>

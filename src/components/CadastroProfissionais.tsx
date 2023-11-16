@@ -55,10 +55,11 @@ const CadastroProfissionais = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.sucess === false) {
+                if (response.data.success === false) {
                     console.log("error");
                     console.log(response.data.error);
                 } else {
+                    
                     window.location.href = "/ListagemProfissionais"
                 }
             }).catch(function (error) {

@@ -57,7 +57,7 @@ const EditarProfissionais = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
-            window.location.href = "/ListagemProfissionais"
+            window.location.href = "/Listagem/Profissionais"
         }).catch(function (error) {
             console.log("Ocorreu um erro ao atualizar");
         });

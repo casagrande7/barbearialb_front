@@ -15,7 +15,7 @@ const ListagemServicos = () => {
         if (confirm) {
             axios.delete('http://127.0.0.1:8000/api/delete/' + id)
             .then(response =>{
-                window.location.href = "/ListagemServicos"
+                window.location.href = "/Listagem/Servicos"
             }). catch(error => console.log(error));
         }
     }
@@ -109,7 +109,7 @@ const ListagemServicos = () => {
                                             <td>{usuario.descricao}</td>
                                             <td>{usuario.duracao}</td>
                                             <td>
-                                                <Link to={"/EditarServicos/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                                <Link to={"/Editar/Servicos/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" onClick={() => handleDelete(usuario.id)}className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>
