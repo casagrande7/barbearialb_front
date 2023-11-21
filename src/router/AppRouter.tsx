@@ -11,6 +11,7 @@ import EditarClientes from "../components/EditarClientes";
 import EditarProfissionais from "../components/EditarProfissionais";
 import CadastroAgenda from "../components/CadastroAgenda";
 import ListagemAgenda from "../components/ListagemAgenda";
+import EditarAgenda from "../components/EditarAgenda";
 
 const AppRouter = () => {
     return(
@@ -27,7 +28,7 @@ const AppRouter = () => {
             <Route path="/Editar/Profissionais/:id" element= {<EditarProfissionais />} />
             <Route path="/Cadastro/Agenda" element= {<CadastroAgenda />} />
             <Route path="/Listagem/Agenda" element= {<ListagemAgenda />} />
-            <Route path="/Editar/Profissionais/:id" element= {<EditarProfissionais />} />
+            <Route path="/Editar/Agenda/:id" element= {<EditarAgenda />} />
            </Routes>
         </BrowserRouter>
 

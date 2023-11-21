@@ -105,7 +105,7 @@ const ListagemAgenda = () => {
                                             <td>{usuario.profissional_id}</td>
                                             <td>{usuario.data_hora}</td>
                                             <td>
-                                                <Link to={"" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                                <Link to={"/Editar/Agenda/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
                                                 <a href="#" onClick={() => handleDelete(usuario.id)}  className='btn btn-danger btn-sm'>Excluir</a>
                                             </td>
                                         </tr>

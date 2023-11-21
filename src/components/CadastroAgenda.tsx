@@ -1,5 +1,5 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import Footer from './Footer';
+import FooterAgenda from './FooterAgenda';
 import Header from './Header';
 import styles from '../App.module.css'
 import axios from 'axios';
@@ -28,27 +28,11 @@ const CadastroAgenda = () => {
                     "Content-Type": "aplication/json"
                 }
             }).then(function (response) {
-                if (response.data.status === true) {
-                    Swal.fire({
-                        title: "Cadastro Concluído",
-                        text: "Agendamento cadastrado com sucesso",
-                        icon: "success",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                    window.setTimeout(() => {
-                        window.location.href = "/Listagem/Agenda";
-                    }, 1000);
-                } else {
+                if (response.data.status === false) {
                     console.log("error");
                     console.log(response.data.error);
-                    Swal.fire({
-                        title: "Opsss...",
-                        text: "Erro ao cadastrar o agendamento!",
-                        icon: "error",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
+                } else {
+                    window.location.href = "/Listagem/Agenda";
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -64,35 +48,35 @@ const CadastroAgenda = () => {
             setData_hora(e.target.value);
         }
     }
-        return (
-            <div>
-                <Header />
-                <main className={styles.main}>
-                    <div className='container'>
-                        <div className='card'>
-                            <div className='card-body'>
-                                <h5 className='card-title'>Cadastrar Agendamento</h5>
-                                <form onSubmit={CadastrarAgenda} className='row g-3'>
-                                    <div className='col-6'>
-                                        <label htmlFor='profissional_id' className='form-label'>Profissional ID</label>
-                                        <input type="text" name='profissional_id' className='form-control' required onChange={handleState} />
-                                    </div>
-                                    <div className='col-6'>
-                                        <label htmlFor='profissional_id' className='form-label'>Data e Horário</label>
-                                        <input type="datetime-local" name='data_hora' className='form-control' required onChange={handleState} />
-                                    </div>
-                                    <div className='col-12'>
-                                        <button type='submit' className='btn btn-success btn-sn'>Cadastrar</button>
-                                    </div>
-                                </form>
-                            </div>
+    return (
+        <div>
+            <Header />
+            <main className={styles.main}>
+                <div className='container'>
+                    <div className='card'>
+                        <div className='card-body'>
+                            <h5 className='card-title'>Cadastrar Agendamento</h5>
+                            <form onSubmit={CadastrarAgenda} className='row g-3'>
+                                <div className='col-6'>
+                                    <label htmlFor='profissional_id' className='form-label'>Profissional ID</label>
+                                    <input type="text" name='profissional_id' className='form-control' required onChange={handleState} />
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor='profissional_id' className='form-label'>Data e Horário</label>
+                                    <input type="datetime-local" name='data_hora' className='form-control' required onChange={handleState} />
+                                </div>
+                                <div className='col-12'>
+                                    <button type='submit' className='btn btn-success btn-sn'>Cadastrar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </main>
+                </div>
+            </main>
 
-                <Footer />
-            </div>
-        );
-    }
+            <FooterAgenda />
+        </div>
+    );
+}
 
 export default CadastroAgenda;
