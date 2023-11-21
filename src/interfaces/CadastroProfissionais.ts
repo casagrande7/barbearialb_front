@@ -12,6 +12,7 @@ export interface CadastroProfissionais{
     numero: string;
     bairro: string;
     cep: number;
+    complemento: string;
     senha: number,
     salario: number
 }

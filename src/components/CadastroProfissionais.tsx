@@ -21,6 +21,7 @@ const CadastroProfissionais = () => {
     const [numero, setNumero] = useState<string>("");
     const [bairro, setBairro] = useState<string>("");
     const [cep, setCep] = useState<string>("");
+    const [complemento, setComplemento] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
     const [salario, setSalario] = useState<string>("");
     const [pesquisa, setPesquisa] = useState<string>("");
@@ -41,6 +42,7 @@ const CadastroProfissionais = () => {
             numero: numero,
             bairro: bairro,
             cep: cep,
+            complemento: complemento,
             senha: senha,
             salario: salario,
             pesquisa: pesquisa
@@ -121,6 +123,9 @@ const CadastroProfissionais = () => {
         if (e.target.name === "cep") {
             setCep(e.target.value);
         }
+        if (e.target.name === "complemento") {
+            setComplemento(e.target.value);
+        }
         if (e.target.name === "senha") {
             setSenha(e.target.value);
         }
@@ -145,7 +150,7 @@ const CadastroProfissionais = () => {
                     setCidade(data.localidade);
                     setPesquisa(data.cep);
                     setEstado(data.uf);
-                    
+
 
                 }).catch(error => { console.log("Ocorreu um erro") });
     }
@@ -159,11 +164,11 @@ const CadastroProfissionais = () => {
                         <div className='card-body'>
                             <h5 className='card-title'>Cadastrar Profissionais</h5>
                             <form onSubmit={CadastrarProfissionals} className='row g-3'>
-                                <div className='col-6'>
+                                <div className='col-4'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
                                     <input type="text" name='nome' className='form-control' required onChange={handleState} />
                                 </div>
-                                <div className='col-6'>
+                                <div className='col-4'>
                                     <label htmlFor='celular' className='form-label'>Celular</label>
                                     <input type="text" name='celular' className='form-control' required onChange={handleState} />
 
@@ -216,6 +221,11 @@ const CadastroProfissionais = () => {
                                 <div className='col-4'>
                                     <label htmlFor='bairro' className='form-label'>Bairro</label>
                                     <input type="text" name='bairro' className='form-control' required onChange={handleState} />
+
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor='complemento' className='form-label'>Complemento</label>
+                                    <input type="text" name='complemento' className='form-control' required onChange={handleState} />
 
                                 </div>
                                 <div className='col-4'>
