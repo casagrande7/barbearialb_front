@@ -68,7 +68,7 @@ const ListagemProfissionais = () => {
     return (
         <div>
             <main className={styles.main}>
-                <div className='container'>
+                <div className='container mw-100 w-auto'>
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>

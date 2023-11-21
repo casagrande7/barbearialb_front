@@ -20,7 +20,7 @@ const CadastroAgenda = () => {
             data_hora: data_hora
         }
 
-        axios.post('http://127.0.0.1:8000/api/registroAgenda',
+        axios.post('http://127.0.0.1:8000/api/criarAgendaProfissional',
             dados,
             {
                 headers: {
@@ -28,11 +28,27 @@ const CadastroAgenda = () => {
                     "Content-Type": "aplication/json"
                 }
             }).then(function (response) {
-                if (response.data.status === false) {
+                if (response.data.status === true) {
+                    Swal.fire({
+                        title: "Cadastro Concluído",
+                        text: "Agendamento cadastrado com sucesso",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    window.setTimeout(() => {
+                        window.location.href = "/Listagem/Agenda";
+                    }, 1000);
+                } else {
                     console.log("error");
                     console.log(response.data.error);
-                } else {
-                    window.location.href = "/Listagem/Agenda";
+                    Swal.fire({
+                        title: "Opsss...",
+                        text: "Erro ao cadastrar o agendamento!",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
                 }
             }).catch(function (error) {
                 console.log(error);
