@@ -104,6 +104,7 @@ const ListagemClientes = () => {
                                         <th>Rua</th>
                                         <th>Número</th>
                                         <th>Bairro</th>
+                                        <th>Complemento</th>
                                         <th>CEP</th>
                                         <th>Ações</th>
                                     </tr>
@@ -123,6 +124,7 @@ const ListagemClientes = () => {
                                             <td>{usuario.rua}</td>
                                             <td>{usuario.numero}</td>
                                             <td>{usuario.bairro}</td>
+                                            <td>{usuario.complemento}</td>
                                             <td>{usuario.cep}</td>
                                             <td>
                                                 <Link to={"/Editar/Clientes/" + usuario.id} className='btn btn-primary btn-sm'>Editar</Link>
