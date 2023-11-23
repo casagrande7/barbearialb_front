@@ -36,7 +36,6 @@ const RecuperarSenha = () => {
                     timer: 1500
                 });
             } else {
-
                 Swal.fire({
                     title: "Senha Atualizada",
                     text: "Senha redefinida com sucesso",
