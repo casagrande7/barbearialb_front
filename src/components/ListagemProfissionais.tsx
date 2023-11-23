@@ -3,6 +3,7 @@ import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'r
 import { Link, useNavigate } from 'react-router-dom';
 import styles from "../App.module.css";
 import { CadastroProfissionais } from '../interfaces/CadastroProfissionais';
+import Swal from 'sweetalert2';
 
 const ListagemProfissionais = () => {
     const [usuarios, setUsuarios] = useState<CadastroProfissionais[]>([]);
@@ -11,13 +12,34 @@ const ListagemProfissionais = () => {
     const navigate = useNavigate();
 
     const handleDelete = (id: number) =>  {
-        const confirm = window.confirm("Você gostaria de exclui?");
-        if (confirm) {
-            axios.delete('http://127.0.0.1:8000/api/deletar/' + id)
-            .then(response =>{
-                window.location.href = "/Listagem/Profissionais"
-            }). catch(error => console.log(error));
-        }
+        Swal.fire({
+            title: "Tem Certeza?",
+            text: "Você não poderá reverter isso!",
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Não Tenho Certeza",
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, Tenho Certeza"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deletado!",
+                text: "Profissional excluído com sucesso",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1000
+              });
+              axios.delete('http://127.0.0.1:8000/api/deletar/' + id)
+              .then(function(response){
+                window.setTimeout(() => {
+                    window.location.href = "/Listagem/Profissionais";
+                }, 1000);
+              }).catch(function(error) {
+                console.log(error);
+            })
+          }
+        });
     }
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
