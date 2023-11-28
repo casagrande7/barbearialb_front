@@ -209,6 +209,11 @@ const EditarClientes = () => {
 
                                 </div>
                                 <div className='col-4'>
+                                    <label htmlFor='cep' className='form-label'>CEP</label>
+                                    <input type="text" name='cep' className='form-control' required onBlur={findCep} onChange={handleState} value={cep} />
+
+                                </div>
+                                <div className='col-4'>
                                     <label htmlFor='cidade' className='form-label'>Cidade</label>
                                     <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade} />
 
@@ -236,11 +241,6 @@ const EditarClientes = () => {
                                 <div className='col-4'>
                                     <label htmlFor='bairro' className='form-label'>Bairro</label>
                                     <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro} />
-
-                                </div>
-                                <div className='col-4'>
-                                    <label htmlFor='cep' className='form-label'>CEP</label>
-                                    <input type="text" name='cep' className='form-control' required onBlur={findCep} onChange={handleState} value={cep} />
 
                                 </div>
                                 <div className='col-4'>

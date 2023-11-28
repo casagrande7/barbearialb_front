@@ -12,7 +12,7 @@ import EditarProfissionais from "../components/EditarProfissionais";
 import CadastroAgenda from "../components/CadastroAgenda";
 import ListagemAgenda from "../components/ListagemAgenda";
 import EditarAgenda from "../components/EditarAgenda";
-import RecuperarSenha from "../components/RecuperarSenha";
+
 
 const AppRouter = () => {
     return(
@@ -21,7 +21,6 @@ const AppRouter = () => {
             <Route path="/Cadastro/Clientes" element= {<CadastroClientes />} />
             <Route path="/Listagem/Clientes" element= {<ListagemClientes />} />
             <Route path="/Editar/Clientes/:id" element= {<EditarClientes />} />
-            <Route path="/Recuperar/Senha/Clientes/:id" element= {<RecuperarSenha />} />
             <Route path="/Cadastro/Servicos" element= {<CadastroServicos />} />
             <Route path="/Listagem/Servicos" element= {<ListagemServicos />} />
             <Route path="/Editar/Servicos/:id" element= {<EditarServicos />} />
