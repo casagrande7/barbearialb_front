@@ -67,8 +67,14 @@ const ListagemProfissionais = () => {
                 });
             }
         } catch (error) {
-            console.error("Erro ao redefinir a senha", error);
-            alert("Ocorreu um erro ao redefinir a senha. Tente novamente mais tarde.");
+            console.log("error");
+            Swal.fire({
+                title: "Opsss...",
+                text: "Erro ao redefinir a senha!",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1000
+            });
         }
     };
 
