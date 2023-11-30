@@ -13,6 +13,7 @@ const CadastroServicos = () => {
     const [preco, setPreco] = useState<string>("");
     const [descricao, setDescricao] = useState<string>("");
     const [duracao, setDuracao] = useState<string>("");
+    
 
     // FormEvent monitora os eventos do formulário
     const CadastrarServicos = (e: FormEvent) => {
