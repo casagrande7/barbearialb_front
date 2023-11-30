@@ -10,9 +10,14 @@ const CadastroAgenda = () => {
     // set significa 
     const [profissional_id, setProfissional_id] = useState<string>("");
     const [data_hora, setData_hora] = useState<string>("");
+    const [profissional_idErro, setProfissional_idErro] = useState<string>("");
+    const [data_horaErro, setData_horaErro] = useState<string>("")
 
     // FormEvent monitora os eventos do formulário
     const CadastrarAgenda = (e: FormEvent) => {
+        setData_horaErro("")
+        setProfissional_idErro("")
+
         e.preventDefault();
 
         const dados = {
@@ -28,7 +33,23 @@ const CadastroAgenda = () => {
                     "Content-Type": "aplication/json"
                 }
             }).then(function (response) {
-                if (response.data.status === true) {
+                if (response.data.status === false) {
+                    if('profissional_id' in response.data.error){
+                        setProfissional_idErro(response.data.error.profissional_id[0])
+                    }
+                    if('data_hora' in response.data.error){
+                        setData_horaErro(response.data.error.data_hora[0])
+                    }
+                    Swal.fire({
+                        title: "Opsss...",
+                        text: "Erro ao cadastrar o agendamento!",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    console.log("error");
+                    console.log(response.data.error);
+                } else {
                     Swal.fire({
                         title: "Cadastro Concluído",
                         text: "Agendamento cadastrado com sucesso",
@@ -39,18 +60,15 @@ const CadastroAgenda = () => {
                     window.setTimeout(() => {
                         window.location.href = "/Listagem/Agenda";
                     }, 1000);
-                } else {
-                    console.log("error");
-                    console.log(response.data.error);
-                    Swal.fire({
-                        title: "Opsss...",
-                        text: "Erro ao cadastrar o agendamento!",
-                        icon: "error",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
                 }
             }).catch(function (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "ID do profissional não existente",
+                    showConfirmButton: false,
+                    timer: 1000
+                  });
                 console.log(error);
             });
 
@@ -76,10 +94,12 @@ const CadastroAgenda = () => {
                                 <div className='col-6'>
                                     <label htmlFor='profissional_id' className='form-label'>Profissional ID</label>
                                     <input type="text" name='profissional_id' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{profissional_idErro}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='profissional_id' className='form-label'>Data e Horário</label>
                                     <input type="datetime-local" name='data_hora' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{data_horaErro}</div>
                                 </div>
                                 <div className='col-12'>
                                     <button type='submit' className='btn btn-success btn-sn'>Cadastrar</button>
