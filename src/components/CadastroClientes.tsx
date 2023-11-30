@@ -239,7 +239,7 @@ const CadastroClientes = () => {
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='celular' className='form-label'>Celular</label>
-                                    <input type="text" name='celular' className='form-control' required onChange={handleState} />
+                                    <input type="tel" name='celular' className='form-control' required onChange={handleState} />
                                     <div className='text-danger'>{celularErro}</div>
 
                                 </div>
