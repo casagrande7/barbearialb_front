@@ -4,11 +4,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from "../App.module.css";
 import { CadastroAgenda } from '../interfaces/CadastroAgenda';
 import Swal from 'sweetalert2';
+import { CadastroProfissionais } from '../interfaces/CadastroProfissionais';
 
 const ListagemAgenda = () => {
     const [selectedProfissional, setSelectedProfissional] = useState<string>("");
     const [horarios, setHorarios] = useState<CadastroAgenda[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
+    const [profissionais, setProfissionais] = useState<CadastroProfissionais[]>([]);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -64,12 +66,12 @@ const ListagemAgenda = () => {
                         }
                     }
                 );
-                        if (response.data.status === true) {
-                            setHorarios(response.data.data);
-                        }
-                        else {
-                            setHorarios([]);
-                        }
+                if (response.data.status === true) {
+                    setHorarios(response.data.data);
+                }
+                else {
+                    setHorarios([]);
+                }
 
             } catch (error) {
                 console.log(error);
@@ -81,6 +83,9 @@ const ListagemAgenda = () => {
     useEffect(() => {
         async function fetchData() {
             try {
+                const profissionalList = await axios.get('http://127.0.0.1:8000/api/pesquisarTodos');
+                setProfissionais(profissionalList.data.data);
+
                 const response = await axios.get('http://127.0.0.1:8000/api/todosAgenda');
                 if (response.data.status) {
                     setHorarios(response.data.data);
@@ -99,14 +104,13 @@ const ListagemAgenda = () => {
             <main className={styles.main}>
                 <div className='container mw-100 w-auto'>
                     <div className='col-12'>
-                        <select
-                            className='form-control'
-                            value={selectedProfissional}
+                        <select className='form-control' value={selectedProfissional}
                             onChange={(e) => setSelectedProfissional(e.target.value)}
                         >
                             <option value='0'>Todos os Profissionais</option>
-                            <option value='1'>Profissional 1</option>
-                            <option value='2'>Profissional 2</option>
+                            {profissionais.map(profissionais => (
+                                <option key={profissionais.id} value={profissionais.id}>{profissionais.nome}</option>
+                            ))}
                         </select>
                     </div>
                     <div className='col-12'>
