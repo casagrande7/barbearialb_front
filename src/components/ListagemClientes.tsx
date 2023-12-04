@@ -42,7 +42,7 @@ const ListagemClientes = () => {
         });
     }
 
-    const recuperarSenha = async (email: number) => {
+    const recuperarSenha = async (email: string) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/recuperarSenhas', {
                 email: email,
