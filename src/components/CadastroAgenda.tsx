@@ -33,6 +33,13 @@ const CadastroAgenda = () => {
                     "Content-Type": "aplication/json"
                 }
             }).then(function (response) {
+                Swal.fire({
+                    title: "Opsss...",
+                    text: "Erro ao cadastrar o agendamento!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
                 if (response.data.status === false) {
                     if('profissional_id' in response.data.error){
                         setProfissional_idErro(response.data.error.profissional_id[0])
@@ -40,13 +47,7 @@ const CadastroAgenda = () => {
                     if('data_hora' in response.data.error){
                         setData_horaErro(response.data.error.data_hora[0])
                     }
-                    Swal.fire({
-                        title: "Opsss...",
-                        text: "Erro ao cadastrar o agendamento!",
-                        icon: "error",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
+                    
                     console.log("error");
                     console.log(response.data.error);
                 } else {
@@ -65,7 +66,7 @@ const CadastroAgenda = () => {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "ID do profissional não existente",
+                    text: "Não é possível fazer agendamento nesse horário",
                     showConfirmButton: false,
                     timer: 1000
                   });
@@ -93,7 +94,7 @@ const CadastroAgenda = () => {
                             <form onSubmit={CadastrarAgenda} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='profissional_id' className='form-label'>Profissional ID</label>
-                                    <input type="text" name='profissional_id' className='form-control' required onChange={handleState} />
+                                    <input type="integer" name='profissional_id' className='form-control' required onChange={handleState} />
                                     <div className='text-danger'>{profissional_idErro}</div>
                                 </div>
                                 <div className='col-6'>

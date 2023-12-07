@@ -57,15 +57,28 @@ const ListagemAgenda = () => {
         async function fetchData() {
             try {
 
-                const response = await axios.post('http://127.0.0.1:8000/api/agenda/find/data   ',
+                const response = await axios.post('http://127.0.0.1:8000/api/criarAgendaFindProfissional   ',
                     { profissional_id: selectedProfissional, data_hora: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
-                    }
-                );
+                    }).then(function (response) {
+                        if (response.data.status === true) {
+                            setHorarios(response.data.data);
+                        } else {
+                            setHorarios([]);
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }/*;
                 if (response.data.status === true) {
                     setHorarios(response.data.data);
                 }
@@ -87,15 +100,15 @@ const ListagemAgenda = () => {
                         title: response.data.message
                     });
 
-                }         
-                
+                }
+
 
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData();
-    }
+    }*/
 
     useEffect(() => {
         async function fetchData() {
@@ -107,7 +120,7 @@ const ListagemAgenda = () => {
                 if (response.data.status) {
                     setHorarios(response.data.data);
                 } else {
-                    console.log("Erro");
+                   console.log('Error')
                 }
             } catch (error) {
                 setError("Ocorreu um erro");
@@ -121,35 +134,40 @@ const ListagemAgenda = () => {
             <main className={styles.main}>
                 <div className='container mw-100 w-auto'>
                     <div className='col-12'>
-                        <select className='form-control' value={selectedProfissional}
+                        <select
+                            className='form-control'
+                            value={selectedProfissional}
                             onChange={(e) => setSelectedProfissional(e.target.value)}
                         >
                             <option value='0'>Todos os Profissionais</option>
                             {profissionais.map(profissionais => (
-                                <option key={profissionais.id} value={profissionais.id}>{profissionais.nome}</option>
-                            ))}
+                                <option key={profissionais.id} value={profissionais.id}>{profissionais.nome}</option>))}
                         </select>
                     </div>
                     <div className='col-12'>
                         <input type="datetime-local" name='pesquisa' className='form-control' onChange={handleState} />
                     </div>
-                    <div className='col-md mb-3'>
+
+                    <div className='col-md mb-4'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h5 className='card-little'>Pesquisar</h5>
-                                <form onSubmit={buscar} className='row'>
-                                    <div className='col-10'>
-                                        <input type="text" name='data_hora' className='form-control' onChange={handleState} />
-                                    </div>
-                                    <div className='col-1'>
-                                        <button type='submit' className='btn btn-success'>Pesquisar</button>
-
-                                    </div>
-                                </form>
-
+                                <div className='card-title'>
+                                    <h5>Pesquisar</h5>
+                                    <form className='row' onSubmit={buscar}>
+                                        <div className='col-11'>
+                                            <input type="text" name='pesquisa' className='form-control' onChange={handleState} />
+                                        </div>
+                                        <div className='col-1'>
+                                            <button type='submit' className='btn btn-success'><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                            </svg></button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>Listagem de Agendamentos</h5>
