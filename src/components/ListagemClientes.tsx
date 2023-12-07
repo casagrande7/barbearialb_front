@@ -93,11 +93,32 @@ const ListagemClientes = () => {
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        setUsuarios(response.data.data);
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
+                        if(response.data.status === true){
+                            setUsuarios(response.data.data);
+                        }
+                        else {
 
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-start",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "error",
+                                title: response.data.message
+                            });
+    
+                        }         
+    
+                }).catch(function (error) {
+                    console.log(error)
+                });
 
             } catch (error) {
                 console.log(error);
@@ -110,7 +131,12 @@ const ListagemClientes = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/todos');
-                setUsuarios(response.data.data)
+                if(response.data.status === true){
+                    setUsuarios(response.data.data)
+                } else{
+                    setUsuarios(response.data.message)
+                }
+                
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error);
