@@ -13,10 +13,20 @@ const EditarServicos = () => {
     const [preco, setPreco] = useState<string>("");
     const [descricao, setDescricao] = useState<string>("");
     const [duracao, setDuracao] = useState<string>("");
+    const [nomeErro, setNomeErro] = useState<string>("")
+    const [precoErro, setPrecoErro] = useState<string>("")
+    const [descricaoErro, setDescricaoErro] = useState<string>("")
+    const [duracaoErro, setDuracaoErro] = useState<string>("")
+
 
     const parametro = useParams();
 
     const atualizarServicos = (e: FormEvent) => {
+        setNomeErro("")
+        setDescricaoErro("")
+        setDuracaoErro("")
+        setPrecoErro("")
+
         e.preventDefault();
 
         const dados = {
@@ -35,7 +45,21 @@ const EditarServicos = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
-            if(response.data.status === true){
+            if (response.data.success === false) {
+                if ('nome' in response.data.error) {
+                    setNomeErro(response.data.error.nome[0])
+                }
+                if ('descricao' in response.data.error) {
+                    setDescricaoErro(response.data.error.descricao[0])
+                }
+                if ('duracao' in response.data.error) {
+                    setDuracaoErro(response.data.error.duracao[0])
+                }
+                if ('preco' in response.data.error) {
+                    setPrecoErro(response.data.error.preco[0])
+                }
+            }
+            if (response.data.status === true) {
                 Swal.fire({
                     title: "Cadastro Atualizado",
                     text: "Serviços atualizado com sucesso",
@@ -46,7 +70,7 @@ const EditarServicos = () => {
                 window.setTimeout(() => {
                     window.location.href = "/Listagem/Servicos";
                 }, 1000);
-            } else{
+            } else {
                 console.log("error");
                 console.log(response.data.error);
                 Swal.fire({
@@ -108,23 +132,28 @@ const EditarServicos = () => {
                             <form onSubmit={atualizarServicos} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} />
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{nomeErro}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='preco' className='form-label'>Preço</label>
-                                    <input type="text" name='preco' className='form-control' required onChange={handleState} value={preco} />
+                                    <input type="text" name='preco' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{precoErro}</div>
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='descricao' className='form-label'>Descrição</label>
-                                    <input type="text" name='descricao' className='form-control' required onChange={handleState} value={descricao} />
+                                    <input type="text" name='descricao' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{descricaoErro}</div>
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='duracao' className='form-label'>Duração</label>
-                                    <input type="text" name='duracao' className='form-control' required onChange={handleState} value={duracao} />
+                                    <input type="text" name='duracao' className='form-control' required onChange={handleState} />
+                                    <div className='text-danger'>{duracaoErro}</div>
 
                                 </div>
+
                                 <div className='col-12'>
                                     <button type='submit' className='btn btn-success btn-sn'>Atualizar</button>
                                 </div>

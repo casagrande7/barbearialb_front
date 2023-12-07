@@ -43,7 +43,7 @@ const CadastroServicos = () => {
 
                 }
             }).then(function (response) {
-                if (response.data.status === false) {
+                if (response.data.success === false) {
                     if('nome' in response.data.error){
                         setNomeErro(response.data.error.nome[0])
                     }

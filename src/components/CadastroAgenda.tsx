@@ -33,7 +33,7 @@ const CadastroAgenda = () => {
                     "Content-Type": "aplication/json"
                 }
             }).then(function (response) {
-                if (response.data.status === false) {
+                if (response.data.success === false) {
                     if('profissional_id' in response.data.error){
                         setProfissional_idErro(response.data.error.profissional_id[0])
                     }

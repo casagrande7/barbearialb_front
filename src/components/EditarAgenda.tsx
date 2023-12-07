@@ -11,10 +11,16 @@ const EditarAgenda = () => {
     const [id, setId] = useState<number>();
     const [profissional_id, setProfissional_id] = useState<string>("");
     const [data_hora, setData_hora] = useState<string>("");
+    const [profissional_idErro, setProfissional_idErro] = useState<string>("");
+    const [data_horaErro, setData_horaErro] = useState<string>("")
+    
 
     const parametro = useParams();
 
     const atualizarAgenda = (e: FormEvent) => {
+        setData_horaErro("")
+        setProfissional_idErro("")
+
         e.preventDefault();
 
         const dados = {
@@ -29,6 +35,14 @@ const EditarAgenda = () => {
                 "Content-Type": "application/json"
             }
         }).then(function (response) {
+            if (response.data.success === false) {
+                if('profissional_id' in response.data.error){
+                    setProfissional_idErro(response.data.error.profissional_id[0])
+                }
+                if('data_hora' in response.data.error){
+                    setData_horaErro(response.data.error.data_hora[0])
+                }
+            }
             if (response.data.status === true) {
                 Swal.fire({
                     title: "Cadastro Atualizado",
@@ -94,10 +108,12 @@ const EditarAgenda = () => {
                                 <div className='col-6'>
                                     <label htmlFor='profissional_id' className='form-label'>Profissional ID</label>
                                     <input type="text" name='profissional_id' className='form-control' required onChange={handleState} value={profissional_id} />
+                                    <div className="text-danger">{profissional_idErro}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='data_hora' className='form-label'>Data e Hora</label>
                                     <input type="datetime-local" name='data_hora' className='form-control' required onChange={handleState} value={data_hora} />
+                                    <div className="text-danger">{data_horaErro}</div>
 
                                 </div>
                                 <div className='col-12'>

@@ -85,47 +85,47 @@ const CadastroClientes = () => {
 
                 }
             }).then(function (response) {
-                if(response.data.status === false){
-                    if('nome' in response.data.error){
+                if (response.data.success === false) {
+                    if ('nome' in response.data.error) {
                         setNomeErro(response.data.error.nome[0])
                     }
-                    if('celular' in response.data.error){
+                    if ('celular' in response.data.error) {
                         setCelularErro(response.data.error.celular[0])
                     }
-                    if('email' in response.data.error){
+                    if ('email' in response.data.error) {
                         setEmailErro(response.data.error.email[0])
                     }
-                    if('cpf' in response.data.error){
+                    if ('cpf' in response.data.error) {
                         setCpfErro(response.data.error.cpf[0])
                     }
-                    if('dataNascimento' in response.data.error){
+                    if ('dataNascimento' in response.data.error) {
                         setDataNascimentoErro(response.data.error.dataNascimento[0])
                     }
-                    if('cidade' in response.data.error){
+                    if ('cidade' in response.data.error) {
                         setCidadeErro(response.data.error.cidade[0])
                     }
-                    if('estado' in response.data.error){
+                    if ('estado' in response.data.error) {
                         setEstadoErro(response.data.error.estado[0])
                     }
-                    if('pais' in response.data.error){
+                    if ('pais' in response.data.error) {
                         setPaisErro(response.data.error.pais[0])
                     }
-                    if('rua' in response.data.error){
+                    if ('rua' in response.data.error) {
                         setRuaErro(response.data.error.rua[0])
                     }
-                    if('numero' in response.data.error){
+                    if ('numero' in response.data.error) {
                         setNumeroErro(response.data.error.numero[0])
                     }
-                    if('bairro' in response.data.error){
+                    if ('bairro' in response.data.error) {
                         setBairroErro(response.data.error.bairro[0])
                     }
-                    if('cep' in response.data.error){
+                    if ('cep' in response.data.error) {
                         setCepErro(response.data.error.cep[0])
                     }
-                    if('complemento' in response.data.error){
+                    if ('complemento' in response.data.error) {
                         setComplementoErro(response.data.error.complemento[0])
                     }
-                    if('senha' in response.data.error){
+                    if ('senha' in response.data.error) {
                         setSenhaErro(response.data.error.senha[0])
                     }
                 }
@@ -217,6 +217,7 @@ const CadastroClientes = () => {
                     setCidade(data.localidade);
                     setPesquisa(data.cep);
                     setEstado(data.uf);
+
 
                 }).catch(error => {
 
@@ -323,7 +324,6 @@ const CadastroClientes = () => {
                     </div>
                 </div>
             </main>
-
             <Footer />
         </div>
     );
