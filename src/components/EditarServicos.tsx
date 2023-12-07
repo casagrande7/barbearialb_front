@@ -132,24 +132,24 @@ const EditarServicos = () => {
                             <form onSubmit={atualizarServicos} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor='nome' className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='nome' className='form-control' value= {nome} required onChange={handleState} />
                                     <div className='text-danger'>{nomeErro}</div>
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='preco' className='form-label'>Preço</label>
-                                    <input type="text" name='preco' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='preco' className='form-control'  value= {preco}required onChange={handleState} />
                                     <div className='text-danger'>{precoErro}</div>
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='descricao' className='form-label'>Descrição</label>
-                                    <input type="text" name='descricao' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='descricao' className='form-control'  value= {descricao}required onChange={handleState} />
                                     <div className='text-danger'>{descricaoErro}</div>
 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor='duracao' className='form-label'>Duração</label>
-                                    <input type="text" name='duracao' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='duracao' className='form-control'  value= {duracao}required onChange={handleState} />
                                     <div className='text-danger'>{duracaoErro}</div>
 
                                 </div>
