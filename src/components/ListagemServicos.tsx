@@ -3,9 +3,10 @@ import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'r
 import { Link, useNavigate } from 'react-router-dom';
 import styles from "../App.module.css";
 import { CadastroServicos } from '../interfaces/CadastroServicos';
+import Swal from 'sweetalert2';
 
 const ListagemServicos = () => {
-    const [usuarios, setUsuarios] = useState<CadastroServicos[]>([]);
+    const [servicos, setServicos] = useState<CadastroServicos[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -40,7 +41,28 @@ const ListagemServicos = () => {
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        setUsuarios(response.data.data);
+                        if (response.data.status) {
+                            setServicos(response.data.data);
+                        }
+                        else {
+                            setServicos([])
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-start",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "error",
+                                title: response.data.message
+                            });
+
+                        }
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -57,7 +79,12 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/all');
-                setUsuarios(response.data.data)
+                if (response.data.status === true) {
+                    setServicos(response.data.data)
+                } else {
+                    setServicos(response.data.message)
+                }
+
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error);
@@ -101,7 +128,7 @@ const ListagemServicos = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {usuarios.map(usuario => (
+                                    {servicos.map(usuario => (
                                         <tr key={usuario.id}>
                                             <td>{usuario.id}</td>
                                             <td>{usuario.nome}</td>

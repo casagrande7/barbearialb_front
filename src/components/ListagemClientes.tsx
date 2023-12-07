@@ -6,7 +6,7 @@ import { CadastroClientes } from '../interfaces/CadastroClientes';
 import Swal from 'sweetalert2';
 
 const ListagemClientes = () => {
-    const [usuarios, setUsuarios] = useState<CadastroClientes[]>([]);
+    const [clientes, setClientes] = useState<CadastroClientes[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -94,10 +94,10 @@ const ListagemClientes = () => {
                         }
                     }).then(function (response) {
                         if(response.data.status === true){
-                            setUsuarios(response.data.data);
+                            setClientes(response.data.data);
                         }
                         else {
-
+                            setClientes([])
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: "top-start",
@@ -132,9 +132,9 @@ const ListagemClientes = () => {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/todos');
                 if(response.data.status === true){
-                    setUsuarios(response.data.data)
+                    setClientes(response.data.data)
                 } else{
-                    setUsuarios(response.data.message)
+                    setClientes(response.data.message)
                 }
                 
             } catch (error) {
@@ -189,7 +189,7 @@ const ListagemClientes = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {usuarios.map(usuario => (
+                                    {clientes.map(usuario => (
                                         <tr key={usuario.id}>
                                             <td>{usuario.id}</td>
                                             <td>{usuario.nome}</td>

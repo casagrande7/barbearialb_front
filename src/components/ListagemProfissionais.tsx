@@ -6,7 +6,7 @@ import { CadastroProfissionais } from '../interfaces/CadastroProfissionais';
 import Swal from 'sweetalert2';
 
 const ListagemProfissionais = () => {
-    const [usuarios, setUsuarios] = useState<CadastroProfissionais[]>([]);
+    const [profissionais, setProfissionais] = useState<CadastroProfissionais[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -108,7 +108,28 @@ const ListagemProfissionais = () => {
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        setUsuarios(response.data.data);
+                        if(response.data.status === true){
+                            setProfissionais(response.data.data);
+                        }
+                        else {
+                            setProfissionais([])
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-start",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "error",
+                                title: response.data.message
+                            });
+    
+                        }         
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -125,7 +146,12 @@ const ListagemProfissionais = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/pesquisarTodos');
-                setUsuarios(response.data.data)
+                if(response.data.status === true){
+                    setProfissionais(response.data.data)
+                } else{
+                    setProfissionais(response.data.message)
+                }
+                
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error);
@@ -178,7 +204,7 @@ const ListagemProfissionais = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {usuarios.map(usuario => (
+                                    {profissionais.map(usuario => (
                                         <tr key={usuario.id}>
                                             <td>{usuario.id}</td>
                                             <td>{usuario.nome}</td>
