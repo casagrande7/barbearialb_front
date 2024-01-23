@@ -217,7 +217,8 @@ const CadastroClientes = () => {
                     setCidade(data.localidade);
                     setPesquisa(data.cep);
                     setEstado(data.uf);
-
+                    setBairro(data.bairro);
+                    setRua(data.logradouro);
 
                 }).catch(error => {
 
@@ -288,7 +289,7 @@ const CadastroClientes = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='rua' className='form-label'>Rua</label>
-                                    <input type="text" name='rua' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='rua' className='form-control' required onChange={handleState} value={rua} />
                                     <div className='text-danger'>{ruaErro}</div>
 
                                 </div>
@@ -300,7 +301,7 @@ const CadastroClientes = () => {
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor='bairro' className='form-label'>Bairro</label>
-                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} />
+                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro}/>
                                     <div className='text-danger'>{bairroErro}</div>
 
                                 </div>
